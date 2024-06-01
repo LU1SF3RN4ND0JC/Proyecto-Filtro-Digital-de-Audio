@@ -39,14 +39,16 @@ plt.tight_layout()
 plt.show()
 # This will convert the NumPy array to an audio
 # file with the given sampling frequency
-write("recording.wav", freq, recording)
-sd.default.samplerate = freq
-write("recordingg.wav", freq, recording_gaussiano)
-sd.default.samplerate = freq
+write("recording.wav", freq, (recording * 32767).astype(np.int16))
+write("recording_gaussiano.wav", freq,
+      (recording_gaussiano * 32767).astype(np.int16))
+
 print("Playing audio")
+sd.default.samplerate = freq
 sd.play(recording)
 sd.wait()
+
 print("Playing audio+gauss")
+sd.default.samplerate = freq
 sd.play(recording_gaussiano)
 sd.wait()
-
