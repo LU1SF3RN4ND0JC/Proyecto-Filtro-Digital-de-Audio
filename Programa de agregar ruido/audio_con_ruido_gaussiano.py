@@ -5,7 +5,7 @@ from playsound import playsound
 import numpy as np
 # Sampling frequency
 freq = 44100
-# Recording duration: 4 segundos
+# Recording duration: 10 segundos
 duration = 10
 # Start recorder with the given values of
 # duration and sample frequency
