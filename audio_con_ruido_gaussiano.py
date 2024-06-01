@@ -20,7 +20,7 @@ recording = recording / np.max(np.abs(recording))
 nvlr = 0.01  # Nivel de ruido
 ruido_gaussiano = np.random.normal(0, nvlr, recording.shape)
 recording_gaussiano = recording+ruido_gaussiano
-recording_gaussiano = recording / \
+recording_gaussiano = recording_gaussiano / \
     np.max(np.abs(recording_gaussiano))  # Normalizar para rango (-1,1)
 
 fig, ax = plt.subplots(2, 1, figsize=(10, 8))
@@ -49,3 +49,4 @@ sd.wait()
 print("Playing audio+gauss")
 sd.play(recording_gaussiano)
 sd.wait()
+
