@@ -6,17 +6,18 @@ import numpy as np
 # Sampling frequency
 freq = 44100
 # Recording duration: 4 segundos
-duration = 4
+duration = 3
 # Start recorder with the given values of
 # duration and sample frequency
 print('Iniciando grabacion')
 recording = sd.rec(int(duration * freq), samplerate=freq, channels=2)
-ruido_gaussiano = np.random.normal(0, 0.00001, recording.shape)
-recording_gaussiano = recording+ruido_gaussiano
 # Record audio for the given number of seconds
 sd.wait()
 print('fin')
 print(recording)
+nvlr = 0.01 #Nivel de ruido
+ruido_gaussiano = np.random.normal(0, nvlr, recording.shape)
+recording_gaussiano = recording+ruido_gaussiano
 
 fig, ax = plt.subplots(2, 1, figsize=(10, 8))
 
@@ -37,5 +38,8 @@ plt.show()
 write("recording1.wav", freq, recording)
 sd.default.samplerate = freq
 print("Playing audio")
+sd.play(recording)
+sd.wait()
+print("Playing audio+gauss")
 sd.play(recording_gaussiano)
 sd.wait()
